@@ -22,7 +22,7 @@
 #' nordstream <- c("cz-tso-0001itp-00010entry", "de-tso-0016itp-00251entry", "de-tso-0017itp-00247entry")
 #' opal <- c("de-tso-0016itp-00251entry", "de-tso-0017itp-00247entry", "cz-tso-0001itp-00010entry")
 #'
-#' head(eg_operationaldata_physical_flow(opal, as.Date("2019-10-14"), as.Date("2019-10-15")))
+#' head(lapply(opal, function(x){eg_operationaldata_physical_flow(opal, as.Date("2019-10-14"), as.Date("2019-10-15"))}))
 #'
 eg_operationaldata_physical_flow <- function(pointDirection, from, to, periodType = "hour", datetime_utc_convert = TRUE, remove_forward_dt = TRUE, replace_known_operator_zeros = TRUE){
 
