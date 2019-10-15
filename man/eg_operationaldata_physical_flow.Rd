@@ -6,8 +6,7 @@
 \usage{
 eg_operationaldata_physical_flow(pointDirection, from, to,
   periodType = "hour", datetime_utc_convert = TRUE,
-  remove_forward_dt = TRUE, add_total = FALSE,
-  replace_known_operator_zeros = TRUE)
+  remove_forward_dt = TRUE, replace_known_operator_zeros = TRUE)
 }
 \arguments{
 \item{pointDirection}{PointDirection from entsog.}
@@ -22,8 +21,6 @@ eg_operationaldata_physical_flow(pointDirection, from, to,
 
 \item{remove_forward_dt}{Remove datetime observations ahead in time. This is a problem for some
 variables where there shouldn't be observations as they are only historic.}
-
-\item{add_total}{Defaults to FALSE. If true a total will be added.}
 
 \item{replace_known_operator_zeros}{Some operators give zeros instead of NAs, for ex NET4GAS.
 The zeros are replaced with NAs.}

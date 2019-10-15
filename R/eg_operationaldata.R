@@ -9,7 +9,6 @@
 #' @param datetime_utc_convert Convert datetimes to UTC. Defaults to TRUE.
 #' @param remove_forward_dt Remove datetime observations ahead in time. This is a problem for some
 #'   variables where there shouldn't be observations as they are only historic.
-#' @param add_total Defaults to FALSE. If true a total will be added.
 #' @param replace_known_operator_zeros Some operators give zeros instead of NAs, for ex NET4GAS.
 #'   The zeros are replaced with NAs.
 #'
@@ -25,9 +24,14 @@
 #'
 #' head(eg_operationaldata_physical_flow(opal, as.Date("2019-10-14"), as.Date("2019-10-15")))
 #'
-eg_operationaldata_physical_flow <- function(pointDirection, from, to, periodType = "hour", datetime_utc_convert = TRUE, remove_forward_dt = TRUE, add_total = FALSE, replace_known_operator_zeros = TRUE){
+eg_operationaldata_physical_flow <- function(pointDirection, from, to, periodType = "hour", datetime_utc_convert = TRUE, remove_forward_dt = TRUE, replace_known_operator_zeros = TRUE){
 
-  eg_url <- paste0("https://transparency.entsog.eu/api/v1/operationalData.json?pointDirection=", paste(pointDirection, collapse = ","), "&from=", from, "&to=", to, "&indicator=Physical%20Flow&periodType=", periodType, "&timezone=CET&limit=-1")
+  # The api is very slow if there are more than one pointDirection, so stop execution if this is the case.
+  if(length(pointDirection) > 1){
+    stop("Only query one pointDirection.")
+  }
+
+  eg_url <- paste0("https://transparency.entsog.eu/api/v1/operationalData.json?pointDirection=", pointDirection, "&from=", from, "&to=", to, "&indicator=Physical%20Flow&periodType=", periodType, "&timezone=CET&limit=-1")
 
   eg_res <- httr::GET(eg_url)
 
@@ -56,14 +60,6 @@ eg_operationaldata_physical_flow <- function(pointDirection, from, to, periodTyp
   if(replace_known_operator_zeros){
     bad_op_test <- eg_cont$operatorLabel == "NET4GAS" & eg_cont$value == 0
     eg_cont$value[bad_op_test] <- as.integer(NA)
-  }
-  if(add_total){
-    eg_total <- eg_cont %>%
-      dplyr::group_by(id, dataSet, indicator, periodType, periodFrom, periodTo, unit) %>%
-      dplyr::summarise(value = sum(value),
-                       count = n())
-
-    eg_cont <- dplyr::bind_rows(eg_cont, eg_total)
   }
 
   eg_cont
