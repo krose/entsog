@@ -25,7 +25,7 @@ eg_op <- function(indicator = NULL, periodType = NULL,
                   operatorLabel = NULL, pointDirection = NULL, pointKey = NULL,
                   pointLabel = NULL, tsoItemIdentifier = NULL,
                   directionKey = NULL,
-                  timezone = "CET",
+                  timeZone = "CET",
                   limit = -1){
   if(!is.null(from)) from <- as.character(from)
   if(!is.null(to)) to <- as.character(to)
@@ -42,7 +42,7 @@ eg_op <- function(indicator = NULL, periodType = NULL,
   en_get <- httr::GET(url)
 
   en_df <- httr::content(en_get, as = "text", encoding = "UTF-8")
-  en_df <- readr::read_csv(en_df)
+  en_df <- readr::read_csv(en_df, locale = readr::locale(tz = "CET"))
 
   en_df
 }
@@ -72,7 +72,7 @@ eg_agg <- function(indicator = NULL, periodType = NULL,
                   operatorLabel = NULL, pointKey = NULL,
                   pointLabel = NULL, tsoItemIdentifier = NULL,
                   directionKey = NULL,
-                  timezone = "CET",
+                  timeZone = "CET",
                   limit = -1){
   argg <- c(as.list(environment()))
   argg <- argg[!sapply(argg, is.null)]
@@ -86,7 +86,7 @@ eg_agg <- function(indicator = NULL, periodType = NULL,
   en_get <- httr::GET(url)
 
   en_df <- httr::content(en_get, as = "text", encoding = "UTF-8")
-  en_df <- readr::read_csv(en_df)
+  en_df <- readr::read_csv(en_df, locale = readr::locale(tz = "CET"))
 
   en_df
 }
@@ -117,7 +117,7 @@ eg_connectionpoints <- function(indicator = NULL, periodType = NULL,
                    operatorLabel = NULL, pointKey = NULL,
                    pointLabel = NULL, tsoItemIdentifier = NULL,
                    directionKey = NULL,
-                   timezone = "CET",
+                   timeZone = "CET",
                    limit = -1){
   argg <- c(as.list(environment()))
   argg <- argg[!sapply(argg, is.null)]
@@ -131,7 +131,7 @@ eg_connectionpoints <- function(indicator = NULL, periodType = NULL,
   en_get <- httr::GET(url)
 
   en_df <- httr::content(en_get, as = "text", encoding = "UTF-8")
-  en_df <- readr::read_csv(en_df)
+  en_df <- readr::read_csv(en_df, locale = readr::locale(tz = "CET"))
 
   en_df
 }
