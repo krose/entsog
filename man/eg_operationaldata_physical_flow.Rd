@@ -36,6 +36,14 @@ library(tidyverse)
 nordstream <- c("cz-tso-0001itp-00010entry", "de-tso-0016itp-00251entry", "de-tso-0017itp-00247entry")
 opal <- c("de-tso-0016itp-00251entry", "de-tso-0017itp-00247entry", "cz-tso-0001itp-00010entry")
 
-head(lapply(opal, function(x){eg_operationaldata_physical_flow(opal, as.Date("2019-10-14"), as.Date("2019-10-15"))}))
+head(lapply(opal, function(x){eg_operationaldata_physical_flow(x, as.Date("2019-10-14"), as.Date("2019-10-15"))}))
+
+gg_opal <- lapply(opal, function(x){eg_operationaldata_physical_flow(x, Sys.Date() - 5, Sys.Date() + 1)}) \%>\%
+  bind_rows() \%>\%
+  mutate(value = (value / 1000000) * 24) \%>\%
+  ggplot(., aes(periodFrom, value, col = pointLabel)) +
+  geom_line() +
+  hrbrthemes::theme_ipsum() +
+  labs(title = "Opal", y = "GWh / day", x = NULL)
 
 }
