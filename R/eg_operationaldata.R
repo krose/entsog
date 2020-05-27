@@ -17,6 +17,8 @@
 #' @param timezone Time zone.
 #' @param limit Limit. -1 for unlimited.
 #'
+#' @export
+#'
 eg_op <- function(indicator = NULL, periodType = NULL,
                   from = NULL, to = NULL,
                   operatorKey = NULL, tsoEicCode = NULL,
@@ -62,6 +64,8 @@ eg_op <- function(indicator = NULL, periodType = NULL,
 #' @param timezone Time zone.
 #' @param limit Limit. -1 for unlimited.
 #'
+#' @export
+#'
 eg_agg <- function(indicator = NULL, periodType = NULL,
                   from = NULL, to = NULL,
                   operatorKey = NULL, tsoEicCode = NULL,
@@ -104,6 +108,8 @@ eg_agg <- function(indicator = NULL, periodType = NULL,
 #' @param directionKey Direction Key.
 #' @param timezone Time zone.
 #' @param limit Limit. -1 for unlimited.
+#'
+#' @export
 #'
 eg_connectionpoints <- function(indicator = NULL, periodType = NULL,
                    from = NULL, to = NULL,
