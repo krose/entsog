@@ -1,5 +1,136 @@
 
 
+#' Get operational data.
+#'
+#' @param indicator Indicator
+#' @param periodType Period type.
+#' @param periodFrom Period from.
+#' @param periodTo Period to.
+#' @param operatorKey Operator key.
+#' @param tsoEicCode TSO EIC code.
+#' @param operatorLabel Operator Label.
+#' @param pointDirection Point Direction.
+#' @param pointKey Point Key.
+#' @param pointLabel Point Label.
+#' @param tsoItemIdentifier TSO Item Identifier.
+#' @param directionKey Direction Key.
+#' @param timezone Time zone.
+#' @param limit Limit. -1 for unlimited.
+#'
+eg_op <- function(indicator = NULL, periodType = NULL,
+                  from = NULL, to = NULL,
+                  operatorKey = NULL, tsoEicCode = NULL,
+                  operatorLabel = NULL, pointDirection = NULL, pointKey = NULL,
+                  pointLabel = NULL, tsoItemIdentifier = NULL,
+                  directionKey = NULL,
+                  timezone = "CET",
+                  limit = -1){
+  if(!is.null(from)) from <- as.character(from)
+  if(!is.null(to)) to <- as.character(to)
+
+  argg <- c(as.list(environment()))
+  argg <- argg[!sapply(argg, is.null)]
+  url <- paste(names(argg), unlist(argg), sep = "=")
+  url <- paste(url, collapse = "&")
+  rm(list = names(argg))
+
+  url <- paste0("https://transparency.entsog.eu/api/v1/operationaldatas.csv?", url)
+  url <- stringr::str_replace_all(string = url, pattern = " ", replacement = "%20")
+
+  en_get <- httr::GET(url)
+
+  en_df <- httr::content(en_get, as = "text", encoding = "UTF-8")
+  en_df <- readr::read_csv(en_df)
+
+  en_df
+}
+
+
+#' Get operational data.
+#'
+#' @param indicator Indicator
+#' @param periodType Period type.
+#' @param periodFrom Period from.
+#' @param periodTo Period to.
+#' @param operatorKey Operator key.
+#' @param tsoEicCode TSO EIC code.
+#' @param operatorLabel Operator Label.
+#' @param pointKey Point Key.
+#' @param pointLabel Point Labe.
+#' @param tsoItemIdentifier TSO Item Identifier.
+#' @param directionKey Direction Key.
+#' @param timezone Time zone.
+#' @param limit Limit. -1 for unlimited.
+#'
+eg_agg <- function(indicator = NULL, periodType = NULL,
+                  from = NULL, to = NULL,
+                  operatorKey = NULL, tsoEicCode = NULL,
+                  operatorLabel = NULL, pointKey = NULL,
+                  pointLabel = NULL, tsoItemIdentifier = NULL,
+                  directionKey = NULL,
+                  timezone = "CET",
+                  limit = -1){
+  argg <- c(as.list(environment()))
+  argg <- argg[!sapply(argg, is.null)]
+  url <- paste(names(argg), unlist(argg), sep = "=")
+  url <- paste(url, collapse = "&")
+  rm(list = names(argg))
+
+  url <- paste0("https://transparency.entsog.eu/api/v1/aggregatedData.csv?", url)
+  url <- stringr::str_replace_all(string = url, pattern = " ", replacement = "%20")
+
+  en_get <- httr::GET(url)
+
+  en_df <- httr::content(en_get, as = "text", encoding = "UTF-8")
+  en_df <- readr::read_csv(en_df)
+
+  en_df
+}
+
+
+
+#' Get operational data.
+#'
+#' @param indicator Indicator
+#' @param periodType Period type.
+#' @param periodFrom Period from.
+#' @param periodTo Period to.
+#' @param operatorKey Operator key.
+#' @param tsoEicCode TSO EIC code.
+#' @param operatorLabel Operator Label.
+#' @param pointKey Point Key.
+#' @param pointLabel Point Labe.
+#' @param tsoItemIdentifier TSO Item Identifier.
+#' @param directionKey Direction Key.
+#' @param timezone Time zone.
+#' @param limit Limit. -1 for unlimited.
+#'
+eg_connectionpoints <- function(indicator = NULL, periodType = NULL,
+                   from = NULL, to = NULL,
+                   operatorKey = NULL, tsoEicCode = NULL,
+                   operatorLabel = NULL, pointKey = NULL,
+                   pointLabel = NULL, tsoItemIdentifier = NULL,
+                   directionKey = NULL,
+                   timezone = "CET",
+                   limit = -1){
+  argg <- c(as.list(environment()))
+  argg <- argg[!sapply(argg, is.null)]
+  url <- paste(names(argg), unlist(argg), sep = "=")
+  url <- paste(url, collapse = "&")
+  rm(list = names(argg))
+
+  url <- paste0("https://transparency.entsog.eu/api/v1/connectionpoints.csv?", url)
+  url <- stringr::str_replace_all(string = url, pattern = " ", replacement = "%20")
+
+  en_get <- httr::GET(url)
+
+  en_df <- httr::content(en_get, as = "text", encoding = "UTF-8")
+  en_df <- readr::read_csv(en_df)
+
+  en_df
+}
+
+
 #' Get interconnections data.
 #'
 #' @param pointDirection PointDirection from entsog.
@@ -22,7 +153,15 @@
 #' nordstream <- c("cz-tso-0001itp-00010entry", "de-tso-0016itp-00251entry", "de-tso-0017itp-00247entry")
 #' opal <- c("de-tso-0016itp-00251entry", "de-tso-0017itp-00247entry", "cz-tso-0001itp-00010entry")
 #'
-#' head(lapply(opal, function(x){eg_operationaldata_physical_flow(opal, as.Date("2019-10-14"), as.Date("2019-10-15"))}))
+#' head(lapply(opal, function(x){eg_operationaldata_physical_flow(x, as.Date("2019-10-14"), as.Date("2019-10-15"))}))
+#'
+#' gg_opal <- lapply(opal, function(x){eg_operationaldata_physical_flow(x, Sys.Date() - 5, Sys.Date() + 1)}) %>%
+#'   bind_rows() %>%
+#'   mutate(value = (value / 1000000) * 24) %>%
+#'   ggplot(., aes(periodFrom, value, col = pointLabel)) +
+#'   geom_line() +
+#'   hrbrthemes::theme_ipsum() +
+#'   labs(title = "Opal", y = "GWh / day", x = NULL)
 #'
 eg_operationaldata_physical_flow <- function(pointDirection, from, to, periodType = "hour", datetime_utc_convert = TRUE, remove_forward_dt = TRUE, replace_known_operator_zeros = TRUE){
 
