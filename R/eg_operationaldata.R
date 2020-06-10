@@ -3,13 +3,13 @@
 #' Get operational data.
 #'
 #' @param indicator Indicator
+#' @param pointDirection Point Direction.
 #' @param periodType Period type.
 #' @param periodFrom Period from.
 #' @param periodTo Period to.
 #' @param operatorKey Operator key.
 #' @param tsoEicCode TSO EIC code.
 #' @param operatorLabel Operator Label.
-#' @param pointDirection Point Direction.
 #' @param pointKey Point Key.
 #' @param pointLabel Point Label.
 #' @param tsoItemIdentifier TSO Item Identifier.
@@ -19,10 +19,10 @@
 #'
 #' @export
 #'
-eg_op <- function(indicator = NULL, periodType = NULL,
+eg_op <- function(indicator = NULL, pointDirection = NULL, periodType = NULL,
                   from = NULL, to = NULL,
                   operatorKey = NULL, tsoEicCode = NULL,
-                  operatorLabel = NULL, pointDirection = NULL, pointKey = NULL,
+                  operatorLabel = NULL, pointKey = NULL,
                   pointLabel = NULL, tsoItemIdentifier = NULL,
                   directionKey = NULL,
                   timeZone = "CET",

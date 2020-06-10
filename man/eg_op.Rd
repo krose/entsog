@@ -4,14 +4,16 @@
 \alias{eg_op}
 \title{Get operational data.}
 \usage{
-eg_op(indicator = NULL, periodType = NULL, from = NULL, to = NULL,
-  operatorKey = NULL, tsoEicCode = NULL, operatorLabel = NULL,
-  pointDirection = NULL, pointKey = NULL, pointLabel = NULL,
+eg_op(indicator = NULL, pointDirection = NULL, periodType = NULL,
+  from = NULL, to = NULL, operatorKey = NULL, tsoEicCode = NULL,
+  operatorLabel = NULL, pointKey = NULL, pointLabel = NULL,
   tsoItemIdentifier = NULL, directionKey = NULL, timeZone = "CET",
   limit = -1)
 }
 \arguments{
 \item{indicator}{Indicator}
+
+\item{pointDirection}{Point Direction.}
 
 \item{periodType}{Period type.}
 
@@ -20,8 +22,6 @@ eg_op(indicator = NULL, periodType = NULL, from = NULL, to = NULL,
 \item{tsoEicCode}{TSO EIC code.}
 
 \item{operatorLabel}{Operator Label.}
-
-\item{pointDirection}{Point Direction.}
 
 \item{pointKey}{Point Key.}
 
