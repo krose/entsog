@@ -42,7 +42,25 @@ eg_op <- function(indicator = NULL, pointDirection = NULL,
   en_get <- httr::GET(url)
 
   en_df <- httr::content(en_get, as = "text", encoding = "UTF-8")
-  en_df <- readr::read_csv(en_df, locale = readr::locale(tz = "CET"))
+  en_df <- readr::read_csv(en_df, locale = readr::locale(tz = "CET"),
+                           col_types = readr::cols(id = readr::col_character(),
+                                                   dataSet = readr::col_number(),
+                                                   indicator = readr::col_character(),
+                                                   itemRemarks = readr::col_character(),
+                                                   generalRemarks = readr::col_character(),
+                                                   value = readr::col_number(),
+                                                   isUnlimited = readr::col_character(),
+                                                   flowStatus = readr::col_character(),
+                                                   interruptionType = readr::col_character(),
+                                                   restorationInformation = readr::col_character(),
+                                                   capacityType = readr::col_character(),
+                                                   capacityBookingStatus = readr::col_character(),
+                                                   isCamRelevant = readr::col_character(),
+                                                   isNA = readr::col_character(),
+                                                   isCmpRelevant = readr::col_character(),
+                                                   bookingPlatformKey = readr::col_character(),
+                                                   bookingPlatformLabel = readr::col_character(),
+                                                   bookingPlatformURL = readr::col_character()))
 
   en_df
 }
