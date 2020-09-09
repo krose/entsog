@@ -131,8 +131,14 @@ Wobbe Index, Capacities and Interruptions.
 
 ``` r
 # Get Malnow flows.
-glimpse(eg_op(indicator = "Physical Flow", pointDirection = "DE-TSO-0001ITP-00096entry", from = Sys.Date() - 2, to = Sys.Date() +2, periodType = "hour"))
-#> Observations: 59
+
+malnow_phys <- eg_op(indicator = "Physical Flow", pointDirection = "DE-TSO-0001ITP-00096entry", from = Sys.Date() - 2, to = Sys.Date() +2, periodType = "hour")
+malnow_noms <- eg_op(indicator = "Nomination", pointDirection = "DE-TSO-0001ITP-00096entry", from = Sys.Date() - 2, to = Sys.Date() +2, periodType = "hour")
+
+malnow <- dplyr::bind_rows(malnow_phys, malnow_noms)
+
+glimpse(malnow_phys)
+#> Observations: 63
 #> Variables: 31
 #> $ id                     <chr> "1Physical Flowhour2020-09-07 04:00:00 ...
 #> $ dataSet                <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
@@ -165,7 +171,13 @@ glimpse(eg_op(indicator = "Physical Flow", pointDirection = "DE-TSO-0001ITP-0009
 #> $ bookingPlatformKey     <chr> "PRISMA", "PRISMA", "PRISMA", "PRISMA",...
 #> $ bookingPlatformLabel   <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
 #> $ bookingPlatformURL     <chr> "https://platform.prisma-capacity.eu/",...
+
+ggplot(malnow, aes(periodFrom, value, col = indicator)) + 
+  geom_line() + 
+  theme_light()
 ```
+
+<img src="man/figures/README-operational-1.png" width="100%" />
 
 ## Note
 

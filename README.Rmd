@@ -63,7 +63,19 @@ Flows, GCV, Wobbe Index, Capacities and Interruptions.
 
 ```{r operational}
 # Get Malnow flows.
-glimpse(eg_op(indicator = "Physical Flow", pointDirection = "DE-TSO-0001ITP-00096entry", from = Sys.Date() - 2, to = Sys.Date() +2, periodType = "hour"))
+
+malnow_phys <- eg_op(indicator = "Physical Flow", pointDirection = "DE-TSO-0001ITP-00096entry", from = Sys.Date() - 2, to = Sys.Date() +2, periodType = "hour")
+malnow_noms <- eg_op(indicator = "Nomination", pointDirection = "DE-TSO-0001ITP-00096entry", from = Sys.Date() - 2, to = Sys.Date() +2, periodType = "hour")
+
+malnow <- dplyr::bind_rows(malnow_phys, malnow_noms)
+
+glimpse(malnow_phys)
+
+ggplot(malnow, aes(periodFrom, value, col = indicator)) + 
+  geom_line() + 
+  theme_light()
+
+
 
 ```
 
