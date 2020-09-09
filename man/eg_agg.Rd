@@ -2,17 +2,22 @@
 % Please edit documentation in R/eg_operationaldata.R
 \name{eg_agg}
 \alias{eg_agg}
-\title{Get operational data.}
+\title{Get aggregate data.}
 \usage{
 eg_agg(indicator = NULL, periodType = NULL, from = NULL, to = NULL,
-  operatorKey = NULL, tsoEicCode = NULL, operatorLabel = NULL,
-  pointKey = NULL, pointLabel = NULL, tsoItemIdentifier = NULL,
-  directionKey = NULL, timeZone = "CET", limit = -1)
+  countryKey = NULL, countryLabel = NULL, operatorKey = NULL,
+  tsoEicCode = NULL, operatorLabel = NULL, pointKey = NULL,
+  pointLabel = NULL, tsoItemIdentifier = NULL, directionKey = NULL,
+  timeZone = "CET", limit = -1)
 }
 \arguments{
 \item{indicator}{Indicator}
 
 \item{periodType}{Period type.}
+
+\item{countryKey}{Country key. BE, DE, DK etc.}
+
+\item{countryLabel}{Country Label. Germany, Belgium, etc.}
 
 \item{operatorKey}{Operator key.}
 
@@ -37,5 +42,6 @@ eg_agg(indicator = NULL, periodType = NULL, from = NULL, to = NULL,
 \item{timezone}{Time zone.}
 }
 \description{
-Get operational data.
+All the connections between transmission system
+operators and their respective balancing zones
 }

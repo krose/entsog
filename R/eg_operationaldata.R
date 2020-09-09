@@ -2,6 +2,10 @@
 
 #' Get operational data.
 #'
+#' Nomination, Renominations, Allocations, Physical
+#' Flows, GCV, Wobbe Index, Capacities,
+#' Interruptions
+#'
 #' @param indicator Indicator
 #' @param pointDirection Point Direction.
 #' @param periodFrom Period from.
@@ -67,12 +71,18 @@ eg_op <- function(indicator = NULL, pointDirection = NULL,
 }
 
 
-#' Get operational data.
+#' Get aggregate data.
+#'
+#' All the connections between transmission system
+#' operators and their respective balancing zones
+#'
 #'
 #' @param indicator Indicator
 #' @param periodType Period type.
 #' @param periodFrom Period from.
 #' @param periodTo Period to.
+#' @param countryKey Country key. BE, DE, DK etc.
+#' @param countryLabel Country Label. Germany, Belgium, etc.
 #' @param operatorKey Operator key.
 #' @param tsoEicCode TSO EIC code.
 #' @param operatorLabel Operator Label.
@@ -87,6 +97,7 @@ eg_op <- function(indicator = NULL, pointDirection = NULL,
 #'
 eg_agg <- function(indicator = NULL, periodType = NULL,
                   from = NULL, to = NULL,
+                  countryKey = NULL, countryLabel = NULL,
                   operatorKey = NULL, tsoEicCode = NULL,
                   operatorLabel = NULL, pointKey = NULL,
                   pointLabel = NULL, tsoItemIdentifier = NULL,
@@ -112,7 +123,9 @@ eg_agg <- function(indicator = NULL, periodType = NULL,
 
 
 
-#' Get operational data.
+#' Get interconnection data.
+#'
+#' Interconnection points
 #'
 #' @param indicator Indicator
 #' @param periodType Period type.

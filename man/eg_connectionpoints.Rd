@@ -2,7 +2,7 @@
 % Please edit documentation in R/eg_operationaldata.R
 \name{eg_connectionpoints}
 \alias{eg_connectionpoints}
-\title{Get operational data.}
+\title{Get interconnection data.}
 \usage{
 eg_connectionpoints(indicator = NULL, periodType = NULL, from = NULL,
   to = NULL, operatorKey = NULL, tsoEicCode = NULL,
@@ -38,5 +38,5 @@ eg_connectionpoints(indicator = NULL, periodType = NULL, from = NULL,
 \item{timezone}{Time zone.}
 }
 \description{
-Get operational data.
+Interconnection points
 }

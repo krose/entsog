@@ -40,5 +40,7 @@ eg_op(indicator = NULL, pointDirection = NULL, from = NULL,
 \item{timezone}{Time zone.}
 }
 \description{
-Get operational data.
+Nomination, Renominations, Allocations, Physical
+Flows, GCV, Wobbe Index, Capacities,
+Interruptions
 }
