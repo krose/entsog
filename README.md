@@ -110,6 +110,8 @@ glimpse(eg_connectionpoints())
 #> $ id                     <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
 #> $ dataSet                <chr> "2DIS-00001", "2DIS-00002", "2DIS-00005...
 
+
+# Get Malnow flows.
 glimpse(eg_op(indicator = "Physical Flow", pointDirection = "DE-TSO-0001ITP-00096entry", from = Sys.Date() - 2, to = Sys.Date() +2, periodType = "hour"))
 #> Observations: 59
 #> Variables: 31

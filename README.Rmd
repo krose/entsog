@@ -39,6 +39,8 @@ library(tidyverse)
 glimpse(eg_agg(countryKey = "DE"))
 glimpse(eg_connectionpoints())
 
+
+# Get Malnow flows.
 glimpse(eg_op(indicator = "Physical Flow", pointDirection = "DE-TSO-0001ITP-00096entry", from = Sys.Date() - 2, to = Sys.Date() +2, periodType = "hour"))
 
 ```
