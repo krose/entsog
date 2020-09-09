@@ -1,0 +1,55 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# entsog
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of entsog is to wrap the ENTSO-G API.
+
+## Installation
+
+You can install the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("krose/entsog")
+```
+## Example
+
+Here is how to get data. We load the relevant packages and extract the data from the api:
+
+```{r example}
+library(entsog)
+library(tidyverse)
+
+glimpse(eg_agg(countryKey = "DE"))
+glimpse(eg_connectionpoints())
+
+glimpse(eg_op(indicator = "Physical Flow", pointDirection = "DE-TSO-0001ITP-00096entry", from = Sys.Date() - 2, to = Sys.Date() +2, periodType = "hour"))
+
+```
+
+
+## Note
+
+This if from Entso-G:
+
+_... the API is publicly available, there are some restrictions in the
+use of API to ensure that the limited resources of the ENTSOG TP are shared fairly with all TP
+users. There is a timeout value on all queries to be 60 seconds. Additional filters should be
+used such as data ranges, specific points, operators and/or indicators to return a successful
+result set._
