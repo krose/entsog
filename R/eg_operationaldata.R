@@ -189,7 +189,7 @@ eg_connectionpoints <- function(indicator = NULL, periodType = NULL,
 #'   labs(title = "Opal", y = "GWh / day", x = NULL)
 #'
 eg_operationaldata_physical_flow <- function(pointDirection, from, to, periodType = "hour", datetime_utc_convert = TRUE, remove_forward_dt = TRUE, replace_known_operator_zeros = TRUE){
-
+  warning("The function is depriciated. Use the eg_op function instead.")
   # The api is very slow if there are more than one pointDirection, so stop execution if this is the case.
   if(length(pointDirection) > 1){
     stop("Only query one pointDirection.")
