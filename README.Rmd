@@ -30,16 +30,38 @@ devtools::install_github("krose/entsog")
 ```
 ## Example
 
+Most of the functions have a lot of paramaters you can use to filter. The ones shown below are just very basic.
+
 Here is how to get data. We load the relevant packages and extract the data from the api:
 
 ```{r example}
 library(entsog)
 library(tidyverse)
 
+```
+
+Get all the connections between transmission system
+operators and their respective balancing zones
+
+
+```{r agg}
+
 glimpse(eg_agg(countryKey = "DE"))
+
+```
+
+Get Interconnection points
+
+```{r connectionpoints}
 glimpse(eg_connectionpoints())
 
+```
 
+Here I get the physical flow for Malnow, but you can use this function to get Nomination, Renominations, Allocations, Physical
+Flows, GCV, Wobbe Index, Capacities and Interruptions.
+
+
+```{r operational}
 # Get Malnow flows.
 glimpse(eg_op(indicator = "Physical Flow", pointDirection = "DE-TSO-0001ITP-00096entry", from = Sys.Date() - 2, to = Sys.Date() +2, periodType = "hour"))
 

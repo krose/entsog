@@ -21,6 +21,9 @@ devtools::install_github("krose/entsog")
 
 ## Example
 
+Most of the functions have a lot of paramaters you can use to filter.
+The ones shown below are just very basic.
+
 Here is how to get data. We load the relevant packages and extract the
 data from the api:
 
@@ -37,6 +40,12 @@ library(tidyverse)
 #> -- Conflicts ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
 #> x dplyr::filter() masks stats::filter()
 #> x dplyr::lag()    masks stats::lag()
+```
+
+Get all the connections between transmission system operators and their
+respective balancing zones
+
+``` r
 
 glimpse(eg_agg(countryKey = "DE"))
 #> Observations: 129
@@ -68,6 +77,11 @@ glimpse(eg_agg(countryKey = "DE"))
 #> $ flowStatus           <chr> "Provisionnal", "Provisionnal", "Provisio...
 #> $ pointsNames          <chr> "Eynatten (BE) // Lichtenbusch / Raeren (...
 #> $ lastUpdateDateTime   <dttm> 2020-09-09 15:51:00, 2020-09-09 15:17:00...
+```
+
+Get Interconnection points
+
+``` r
 glimpse(eg_connectionpoints())
 #> Warning: 756 parsing failures.
 #> row col   expected     actual         file
@@ -109,8 +123,13 @@ glimpse(eg_connectionpoints())
 #> $ isCMPRelevant          <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
 #> $ id                     <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
 #> $ dataSet                <chr> "2DIS-00001", "2DIS-00002", "2DIS-00005...
+```
 
+Here I get the physical flow for Malnow, but you can use this function
+to get Nomination, Renominations, Allocations, Physical Flows, GCV,
+Wobbe Index, Capacities and Interruptions.
 
+``` r
 # Get Malnow flows.
 glimpse(eg_op(indicator = "Physical Flow", pointDirection = "DE-TSO-0001ITP-00096entry", from = Sys.Date() - 2, to = Sys.Date() +2, periodType = "hour"))
 #> Observations: 59
