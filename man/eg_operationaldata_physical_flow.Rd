@@ -4,9 +4,15 @@
 \alias{eg_operationaldata_physical_flow}
 \title{Get interconnections data.}
 \usage{
-eg_operationaldata_physical_flow(pointDirection, from, to,
-  periodType = "hour", datetime_utc_convert = TRUE,
-  remove_forward_dt = TRUE, replace_known_operator_zeros = TRUE)
+eg_operationaldata_physical_flow(
+  pointDirection,
+  from,
+  to,
+  periodType = "hour",
+  datetime_utc_convert = TRUE,
+  remove_forward_dt = TRUE,
+  replace_known_operator_zeros = TRUE
+)
 }
 \arguments{
 \item{pointDirection}{PointDirection from entsog.}

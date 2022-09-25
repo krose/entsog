@@ -4,11 +4,21 @@
 \alias{eg_connectionpoints}
 \title{Get interconnection data.}
 \usage{
-eg_connectionpoints(indicator = NULL, periodType = NULL, from = NULL,
-  to = NULL, operatorKey = NULL, tsoEicCode = NULL,
-  operatorLabel = NULL, pointKey = NULL, pointLabel = NULL,
-  tsoItemIdentifier = NULL, directionKey = NULL, timeZone = "CET",
-  limit = -1)
+eg_connectionpoints(
+  indicator = NULL,
+  periodType = NULL,
+  from = NULL,
+  to = NULL,
+  operatorKey = NULL,
+  tsoEicCode = NULL,
+  operatorLabel = NULL,
+  pointKey = NULL,
+  pointLabel = NULL,
+  tsoItemIdentifier = NULL,
+  directionKey = NULL,
+  timeZone = "CET",
+  limit = -1
+)
 }
 \arguments{
 \item{indicator}{Indicator}

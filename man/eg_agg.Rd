@@ -4,11 +4,23 @@
 \alias{eg_agg}
 \title{Get aggregate data.}
 \usage{
-eg_agg(indicator = NULL, periodType = NULL, from = NULL, to = NULL,
-  countryKey = NULL, countryLabel = NULL, operatorKey = NULL,
-  tsoEicCode = NULL, operatorLabel = NULL, pointKey = NULL,
-  pointLabel = NULL, tsoItemIdentifier = NULL, directionKey = NULL,
-  timeZone = "CET", limit = -1)
+eg_agg(
+  indicator = NULL,
+  periodType = NULL,
+  from = NULL,
+  to = NULL,
+  countryKey = NULL,
+  countryLabel = NULL,
+  operatorKey = NULL,
+  tsoEicCode = NULL,
+  operatorLabel = NULL,
+  pointKey = NULL,
+  pointLabel = NULL,
+  tsoItemIdentifier = NULL,
+  directionKey = NULL,
+  timeZone = "CET",
+  limit = -1
+)
 }
 \arguments{
 \item{indicator}{Indicator}
