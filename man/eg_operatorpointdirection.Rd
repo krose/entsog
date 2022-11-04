@@ -4,8 +4,15 @@
 \alias{eg_operatorpointdirection}
 \title{Get operator point directions data.}
 \usage{
-eg_operatorpointdirection()
+eg_operatorpointdirection(has_data = FALSE)
+}
+\arguments{
+\item{has_data}{To filter the list only those operator point directions
+which belong to a TSO, which itself is publishing
+REG715 information, the parameter hasData can be used.}
 }
 \description{
-Get operator point directions data.
+This list contains all known operator point directions, including the ones involving non-Transmission
+System operators; i.e. this list can contain also storage system operators, or LNG system operators, all of
+which do not in any way send data to ENTSOG’s Transparency Platform.
 }
