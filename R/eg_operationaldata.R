@@ -104,6 +104,9 @@ eg_agg <- function(indicator = NULL, periodType = NULL,
                   directionKey = NULL,
                   timeZone = "CET",
                   limit = -1){
+  if(!is.null(from)) from <- as.character(from)
+  if(!is.null(to)) to <- as.character(to)
+
   argg <- c(as.list(environment()))
   argg <- argg[!sapply(argg, is.null)]
   url <- paste(names(argg), unlist(argg), sep = "=")
@@ -151,6 +154,9 @@ eg_connectionpoints <- function(indicator = NULL, periodType = NULL,
                    directionKey = NULL,
                    timeZone = "CET",
                    limit = -1){
+  if(!is.null(from)) from <- as.character(from)
+  if(!is.null(to)) to <- as.character(to)
+
   argg <- c(as.list(environment()))
   argg <- argg[!sapply(argg, is.null)]
   url <- paste(names(argg), unlist(argg), sep = "=")
