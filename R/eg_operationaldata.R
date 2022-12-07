@@ -87,7 +87,9 @@ eg_op <- function(indicator = NULL, pointDirection = NULL,
 #' @param tsoEicCode TSO EIC code.
 #' @param operatorLabel Operator Label.
 #' @param pointKey Point Key.
-#' @param pointLabel Point Labe.
+#' @param pointLabel Point Label.
+#' @param adjacentSystemsKey Adjacent Systems Key.
+#' @param adjacentSystemsLabel Adjacent Systems Label
 #' @param tsoItemIdentifier TSO Item Identifier.
 #' @param directionKey Direction Key.
 #' @param timezone Time zone.
@@ -101,6 +103,7 @@ eg_agg <- function(indicator = NULL, periodType = NULL,
                   operatorKey = NULL, tsoEicCode = NULL,
                   operatorLabel = NULL, pointKey = NULL,
                   pointLabel = NULL, tsoItemIdentifier = NULL,
+                  adjacentSystemsKey = NULL, adjacentSystemsLabel = NULL,
                   directionKey = NULL,
                   timeZone = "CET",
                   limit = -1){

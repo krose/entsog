@@ -17,6 +17,8 @@ eg_agg(
   pointKey = NULL,
   pointLabel = NULL,
   tsoItemIdentifier = NULL,
+  adjacentSystemsKey = NULL,
+  adjacentSystemsLabel = NULL,
   directionKey = NULL,
   timeZone = "CET",
   limit = -1
@@ -39,9 +41,13 @@ eg_agg(
 
 \item{pointKey}{Point Key.}
 
-\item{pointLabel}{Point Labe.}
+\item{pointLabel}{Point Label.}
 
 \item{tsoItemIdentifier}{TSO Item Identifier.}
+
+\item{adjacentSystemsKey}{Adjacent Systems Key.}
+
+\item{adjacentSystemsLabel}{Adjacent Systems Label}
 
 \item{directionKey}{Direction Key.}
 
