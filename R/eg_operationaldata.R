@@ -122,7 +122,7 @@ eg_agg <- function(indicator = NULL, periodType = NULL,
   en_get <- httr::GET(url)
 
   en_df <- httr::content(en_get, as = "text", encoding = "UTF-8")
-  en_df <- readr::read_csv(en_df, locale = readr::locale(tz = "CET"))
+  en_df <- readr::read_csv(en_df, locale = readr::locale(tz = argg$timeZone))
 
   en_df
 }
@@ -172,7 +172,7 @@ eg_connectionpoints <- function(indicator = NULL, periodType = NULL,
   en_get <- httr::GET(url)
 
   en_df <- httr::content(en_get, as = "text", encoding = "UTF-8")
-  en_df <- readr::read_csv(en_df, locale = readr::locale(tz = "CET"))
+  en_df <- readr::read_csv(en_df, locale = readr::locale(tz = argg$timeZone))
 
   en_df
 }
