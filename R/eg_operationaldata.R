@@ -33,6 +33,7 @@ eg_op <- function(indicator = NULL, pointDirection = NULL,
                   limit = -1){
   if(!is.null(from)) from <- as.character(from)
   if(!is.null(to)) to <- as.character(to)
+  pointDirection <- paste(pointDirection, collapse = ",")
 
   argg <- c(as.list(environment()))
   argg <- argg[!sapply(argg, is.null)]
