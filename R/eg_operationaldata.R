@@ -46,6 +46,8 @@ eg_op <- function(indicator = NULL, pointDirection = NULL,
 
   en_get <- httr::GET(url)
 
+  if(httr::http_error(en_get)){stop(httr::http_status(en_get))}
+
   en_df <- httr::content(en_get, as = "text", encoding = "UTF-8")
   en_df <- readr::read_csv(en_df, locale = readr::locale(tz = "CET"),
                            col_types = readr::cols(id = readr::col_character(),
